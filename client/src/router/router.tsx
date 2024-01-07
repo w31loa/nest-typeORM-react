@@ -2,9 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import Layout from "../pages/Layout";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
-import Transactions from "../pages/transactions";
 import Categories from "../pages/Categories";
 import Auth from "../pages/Auth";
+import Transactions from "../pages/Transactions";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export const router = createBrowserRouter([
     {
@@ -18,11 +19,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'transactions',
-                element: <Transactions/>
+                element: <ProtectedRoute>
+                             <Transactions/>
+                         </ProtectedRoute>
             },
             {
                 path: 'categories',
-                element: <Categories/>
+                element: <ProtectedRoute>
+                             <Categories/>
+                         </ProtectedRoute>
             },
             {
                 path: 'auth',
