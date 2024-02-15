@@ -25,6 +25,15 @@ export interface IResponseUser {
 }
 
 
+export interface ICategory{
+    title:string
+    id:number
+    createdAt: string
+    updatedAt: string
+    transactions: []
+}   
+
+
 // export interface IResponseUserData{
 //     email: string  |undefined
 //     password: string  |undefined

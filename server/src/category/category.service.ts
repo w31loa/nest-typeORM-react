@@ -4,7 +4,7 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Category } from './entities/category.entity';
-import { CATEGORY_NOT_FOUND_EXCEPTION } from './category.constants';
+import { CATEGORY_ALREADY_EXIST_EXCEPTION, CATEGORY_NOT_FOUND_EXCEPTION } from './category.constants';
 
 @Injectable()
 export class CategoryService {
@@ -18,7 +18,7 @@ export class CategoryService {
     })
 
     if(isExist.length){
-      throw new HttpException(CATEGORY_NOT_FOUND_EXCEPTION, HttpStatus.BAD_REQUEST)
+      throw new HttpException(CATEGORY_ALREADY_EXIST_EXCEPTION, HttpStatus.BAD_REQUEST)
     }
 
     const newCategory = {
@@ -59,7 +59,6 @@ export class CategoryService {
     if(!category){
       throw new HttpException(CATEGORY_NOT_FOUND_EXCEPTION, HttpStatus.NOT_FOUND)
     }
-
     return await this.categoryRepository.update(id,updateCategoryDto)
   }
 
